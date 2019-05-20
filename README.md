@@ -39,3 +39,27 @@
 |10    |壱拾  |
 |101   |壱百壱 |
 |1010  |壱千壱拾 |
+
+## このアプリの実行方法
+- OpenJDK8 が利用可能な環境が必要です。
+- CentOS7の場合
+```
+sudo yum install -y java-1.8.0-openjdk-devel
+```
+
+- Mac/Windowsの場合、JAVA_HOME環境変数が正しくJDKを指していることを確認してください。
+```
+$ echo $JAVA_HOME
+/Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/
+```
+
+- テストケースの実行
+```
+$ ./mvnw test
+```
+
+- サーバーの起動
+```
+$ ./mvnw install
+$ java -jar target/app-0.0.1-SNAPSHOT.jar
+```
