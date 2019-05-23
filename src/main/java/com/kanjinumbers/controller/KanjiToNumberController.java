@@ -27,7 +27,11 @@ public class KanjiToNumberController {
     @RequestMapping(method = RequestMethod.GET, value = "{kanji}", produces = MediaType.TEXT_PLAIN_VALUE)
     public String toKanji(@PathVariable("kanji") String kanji) throws BadRequestException {
         LOG.info("receive kanji: " + kanji);
-        return String.valueOf(kanjiToNumberConverter.toNumber(kanji));
+        long number = kanjiToNumberConverter.toNumber(kanji);
+        if (number < 0) {
+            throw new BadRequestException();
+        }
+        return String.valueOf(number);
     }
 
 }

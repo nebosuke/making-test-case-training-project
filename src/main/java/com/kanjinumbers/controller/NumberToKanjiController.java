@@ -28,7 +28,11 @@ public class NumberToKanjiController {
     public String toKanji(@PathVariable("number") String strNumber) throws BadRequestException {
         LOG.info("receive number: " + strNumber);
         long number = parseAsNumber(strNumber);
-        return numberToKanjiConverter.toKanji(number);
+        String kanji = numberToKanjiConverter.toKanji(number);
+        if (kanji == null) {
+            throw new BadRequestException();
+        }
+        return kanji;
     }
 
     private long parseAsNumber(String strNumber) {
